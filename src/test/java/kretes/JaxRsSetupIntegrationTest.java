@@ -4,6 +4,8 @@ import com.sun.jersey.server.impl.cdi.CDIExtension;
 import com.sun.jersey.test.framework.JerseyTest;
 import org.jglue.cdiunit.AdditionalClasses;
 import org.jglue.cdiunit.CdiRunner;
+import org.jglue.cdiunit.DummyHttpRequest;
+import org.jglue.cdiunit.InRequestScope;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +17,7 @@ import static com.jayway.restassured.RestAssured.expect;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 @RunWith(CdiRunner.class)
-@AdditionalClasses(CDIExtension.class)
+@AdditionalClasses({CDIExtension.class,DummyHttpRequest.class})
 public class JaxRsSetupIntegrationTest {
 
     @Inject
@@ -35,6 +37,7 @@ public class JaxRsSetupIntegrationTest {
     }
     
     @Test
+    @InRequestScope
     public void shouldReturnHelloWorld() throws Exception {
         assert bean != null;
 
