@@ -37,30 +37,14 @@
       <dependency>
           <groupId>javax.enterprise</groupId>
           <artifactId>cdi-api</artifactId>
-          <version>1.0-SP4</version>
+          <version>1.1</version>
           <scope>provided</scope>
       </dependency>
       <dependency>
           <groupId>org.jglue.cdi-unit</groupId>
           <artifactId>cdi-unit</artifactId>
-          <version>2.1.0</version>
-          <exclusions>
-              <exclusion>
-                  <groupId>org.jboss.weld.se</groupId>
-                  <artifactId>weld-se</artifactId>
-              </exclusion>
-              <exclusion>
-                  <groupId>org.jboss.weld.se</groupId>
-                  <artifactId>weld-se-core</artifactId>
-              </exclusion>
-          </exclusions>
+          <version>2.2.1</version>
           <scope>test</scope>
-      </dependency>
-      <dependency>
-          <groupId>org.jboss.weld.se</groupId>
-          <artifactId>weld-se-core</artifactId>
-          <version>1.1.8.Final</version>
-          <scope>provided</scope>
       </dependency>
 
       <!--excluding groovy from rest-assured and including groovy-all-->
