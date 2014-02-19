@@ -17,7 +17,7 @@ import static com.jayway.restassured.RestAssured.expect;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 @RunWith(CdiRunner.class)
-@AdditionalClasses({CDIExtension.class,DummyHttpRequest.class})
+@AdditionalClasses({CDIExtension.class,DummyHttpRequest.class,Root.class})
 public class JaxRsSetupIntegrationTest {
 
     @Inject
