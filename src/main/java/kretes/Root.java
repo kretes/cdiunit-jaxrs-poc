@@ -9,7 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("/")
-@Produces("application/vnd.collection.next+json")
+@Produces("application/json")
 @RequestScoped
 public class Root {
     
