@@ -93,7 +93,11 @@
                     <systemPropertyVariables>
                         <java.naming.factory.initial>
                             kretes.FixedICFactory
-                            </java.naming.factory.initial>
+                        </java.naming.factory.initial>
+                        <java.util.logging.config.file>
+                            ${project.build.testOutputDirectory}/logging.properties
+                        </java.util.logging.config.file>
+                        <com.sun.jersey.server.impl.cdi.lookupExtensionInBeanManager>true</com.sun.jersey.server.impl.cdi.lookupExtensionInBeanManager>
                     </systemPropertyVariables>
                     <printSummary>true</printSummary>
                 </configuration>

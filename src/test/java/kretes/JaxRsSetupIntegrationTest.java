@@ -18,6 +18,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 @RunWith(CdiRunner.class)
 @AdditionalClasses({CDIExtension.class,DummyHttpRequest.class,Root.class})
+@InRequestScope
 public class JaxRsSetupIntegrationTest {
 
     @Inject
@@ -37,7 +38,7 @@ public class JaxRsSetupIntegrationTest {
     }
     
     @Test
-    @InRequestScope
+
     public void shouldReturnHelloWorld() throws Exception {
         assert bean != null;
 

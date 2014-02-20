@@ -1,8 +1,6 @@
 package kretes;
 
-import org.jglue.cdiunit.internal.CdiUnitContextFactory;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
+import org.jglue.cdiunit.internal.CdiUnitContext;
 
 import javax.naming.*;
 import javax.naming.spi.InitialContextFactory;
@@ -10,7 +8,8 @@ import java.util.Hashtable;
 import java.util.Properties;
 
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.spy;
 
 public class FixedICFactory implements InitialContextFactory {
 
@@ -32,7 +31,7 @@ public class FixedICFactory implements InitialContextFactory {
 
     @Override
     public Context getInitialContext(Hashtable<?, ?> environment) throws NamingException {
-        Context initialContext = new CdiUnitContextFactory().getInitialContext(environment);
+        Context initialContext = new CdiUnitContext();
         final Context spy = spy(initialContext);
         doReturn(new DefaultParser()).when(spy).getNameParser(anyString());
         doReturn(spy).when(spy).lookup("com");
