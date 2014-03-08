@@ -12,11 +12,7 @@ import javax.ws.rs.Produces;
 @Produces("application/json")
 @ApplicationScoped
 public class Root {
-
-    public Root() {
-//        Thread.dumpStack();
-    }
-
+    
     @Inject
     private Bean bean;
 

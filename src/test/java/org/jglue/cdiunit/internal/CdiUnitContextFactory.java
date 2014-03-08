@@ -1,22 +1,26 @@
 package org.jglue.cdiunit.internal;
 
-import kretes.FixedICFactory;
+import org.jglue.cdiunit.internal.CdiUnitContextFactory;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
-import javax.naming.Context;
-import javax.naming.NamingException;
+import javax.naming.*;
 import javax.naming.spi.InitialContextFactory;
 import java.util.Hashtable;
+import java.util.Properties;
+
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.*;
 
 public class CdiUnitContextFactory implements InitialContextFactory {
 
-    private static Context context;
+    private static CdiUnitContext context;
 
     @Override
     public Context getInitialContext(Hashtable<?, ?> environment) throws NamingException {
-        if(context == null) {
-            context = new FixedICFactory().getInitialContext(environment);
+        if (context == null) {
+            context = new CdiUnitContext();
         }
         return context;
     }
-
 }

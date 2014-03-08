@@ -1,7 +1,10 @@
 package kretes;
 
 import com.sun.jersey.server.impl.cdi.CDIExtension;
+import com.sun.jersey.test.framework.AppDescriptor;
 import com.sun.jersey.test.framework.JerseyTest;
+import com.sun.jersey.test.framework.WebAppDescriptor;
+import org.jboss.weld.servlet.WeldListener;
 import org.jglue.cdiunit.AdditionalClasses;
 import org.jglue.cdiunit.CdiRunner;
 import org.jglue.cdiunit.DummyHttpRequest;
@@ -21,15 +24,16 @@ import static org.hamcrest.CoreMatchers.equalTo;
 @InRequestScope
 public class JaxRsSetupIntegrationTest {
 
-    @Inject
-    Bean bean;
-
     private JerseyTest test;
+
+    @Inject
+    private Bean bean;
 
     @Before
     public void setUp() throws Exception {
-        test = new JerseyTest("kretes"){};
-        test.setUp();        
+        AppDescriptor appDescriptor = new WebAppDescriptor.Builder("kretes").contextListenerClass(WeldListener.class).build();
+        test = new JerseyTest(appDescriptor){};
+        test.setUp();
     }
 
     @After
@@ -38,18 +42,14 @@ public class JaxRsSetupIntegrationTest {
     }
     
     @Test
-
     public void shouldReturnHelloWorld() throws Exception {
+
         assert bean != null;
 
         expect().
             body("response", equalTo("true")).
         when().
-            get(address("/"));
+            get("http://localhost:9998/");
     }
 
-    private String address(String path) {
-        return String.format("http://localhost:9998%s", path);
-    }
-    
 }
